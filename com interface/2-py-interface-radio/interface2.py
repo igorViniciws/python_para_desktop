@@ -2,6 +2,15 @@
 import tkinter as tk
 from tkinter import ttk  # Widgets mais modernos
 
+# Mapeamento de cores em PT -> EN para Tkinter
+mapa_cores = {
+    "Vermelho": "red",
+    "Azul": "blue",
+    "Amarelo": "yellow",
+    "Preto": "black",
+    "Branco": "white"
+}
+
 def atualizar_resultado():
     nome = caixa_texto.get()
     preferencia = var_radio.get()
@@ -17,12 +26,14 @@ def atualizar_resultado():
         saudacao = f"{saudacao}, caro(a)"
 
     cor_favorita = combo_cor.get()
+    cor_tk = mapa_cores.get(cor_favorita, "black")  # pega a cor em inglês ou preto padrão
 
     mensagem = f"{saudacao} {nome}! Você prefere {preferencia}."
     if cor_favorita:
         mensagem += f" Sua cor favorita é {cor_favorita}."
 
-    label_resultado.config(text=mensagem)
+    # Atualiza o label uma única vez, sem duplicação
+    label_resultado.config(text=mensagem, fg=cor_tk)
 
 def limpar_campos():
     """Função para limpar todos os campos"""
@@ -31,7 +42,7 @@ def limpar_campos():
     var_check_saudacao.set(False)
     var_check_personalizada.set(False)
     combo_cor.set("")
-    label_resultado.config(text="")
+    label_resultado.config(text="", fg="black")  # chama config apenas uma vez
 
 # Criar a janela principal
 janela = tk.Tk()
