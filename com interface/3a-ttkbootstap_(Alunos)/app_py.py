@@ -127,8 +127,8 @@ class FormularioInscricao:
         self.lembrar_label.pack(fill=X)
 
     def set_icon(self):
-        icon_ico = resource_path("logo.ico")
-        icon_png = resource_path("logo.png")
+        icon_ico = resource_path("Logo.ico")
+        icon_png = resource_path("Logo.png")
 
         if os.path.exists(icon_ico):
             self.master.iconbitmap(icon_ico)
